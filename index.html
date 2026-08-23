@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Hamza, MLT | Elite Digital Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        h1, h2, h3, .brand-font { font-family: 'Playfair Display', serif; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover { 
+            transform: translateY(-8px); 
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(96, 165, 250, 0.5);
+            box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.3); 
+        }
+        
+        .ambient-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background: radial-gradient(circle at 15% 50%, rgba(30, 58, 138, 0.4), transparent 50%),
+                        radial-gradient(circle at 85% 30%, rgba(15, 118, 110, 0.3), transparent 50%);
+            animation: breathe 15s ease-in-out infinite alternate;
+        }
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .profile-glow {
+            position: relative;
+        }
+        .profile-glow::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            background: linear-gradient(45deg, #3b82f6, #10b981, #6366f1);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(20px);
+            animation: spin-glow 8s linear infinite;
+        }
+        @keyframes spin-glow {
+            100% { transform: rotate(360deg); }
+        }
+
+        .hide-on-scroll { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .show-on-scroll { opacity: 1; transform: translateY(0); }
+
+        .glass-nav { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <div class="ambient-bg"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="glass-nav p-5 sticky top-0 z-50 shadow-2xl">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+            <div class="text-2xl font-black tracking-widest text-blue-400 brand-font uppercase">MUHAMMAD HAMZA</div>
+            <div class="space-x-6 text-sm font-semibold hidden md:block tracking-wide">
+                <a href="#about" class="hover:text-blue-400 transition">About</a>
+                <a href="#clinical" class="hover:text-blue-400 transition">Clinical</a>
+                <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
+                <a href="#certificates" class="hover:text-blue-400 transition">Certificates</a>
+                <a href="#memberships" class="hover:text-blue-400 transition">Memberships</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="py-24 px-6 relative overflow-hidden flex items-center min-h-[80vh]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between w-full">
+            
+            <div class="md:w-1/3 flex justify-center md:justify-start mb-12 md:mb-0">
+                <div class="profile-glow">
+                    <img src="profile.jpg" alt="Muhammad Hamza" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover border-4 border-slate-900 relative z-10">
+                </div>
+            </div>
+
+            <div class="md:w-2/3 text-center md:text-left pl-0 md:pl-16">
+                <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight text-white">Muhammad Hamza, <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">MLT</span></h1>
+                <p class="text-xl md:text-2xl font-light mb-10 text-slate-300 max-w-2xl leading-relaxed">Medical Laboratory Technologist specializing in molecular biology, bioinformatics, and evaluating genomic AI foundation models.</p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <button onclick="copyEmail()" id="emailBtn" class="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 py-3 px-8 rounded-full font-bold transition duration-300 shadow-xl text-white border border-blue-400 focus:outline-none">
+                        <i id="emailIcon" class="fas fa-envelope mr-2"></i><span id="emailText">Email Me</span>
+                    </button>
+                    <a href="https://github.com/hamzamlt-03" target="_blank" class="glass-card py-3 px-8 rounded-full font-bold text-white"><i class="fab fa-github mr-2"></i>GitHub</a>
+                    <a href="https://linkedin.com/in/m-hamza-mlt" target="_blank" class="glass-card py-3 px-8 rounded-full font-bold text-white"><i class="fab fa-linkedin-in mr-2"></i>LinkedIn</a>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-6 space-y-32 mt-6">
+
+        <!-- Academic Profile -->
+        <section id="about" class="hide-on-scroll">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white inline-block border-b-4 border-emerald-500 pb-3">Academic Profile</h2>
+            </div>
+            <div class="glass-card p-10 md:p-14 rounded-3xl">
+                <p class="mb-12 text-lg md:text-xl text-slate-300 leading-loose text-center max-w-4xl mx-auto">Medical Laboratory Technology graduate with a strong academic record (CGPA 3.88/4.00; ranked among the top 5 in class) and hands-on research experience in pediatric thalassemia and experimental toxicology. Proficient in research methodology, statistical analysis using SPSS and R, and structured research data collection. Seeking to pursue postgraduate studies in molecular biology and genetics to contribute to advances in precision medicine and molecular diagnostics.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8 rounded-2xl">
+                        <h4 class="font-bold text-2xl text-blue-400 mb-2"><i class="fas fa-graduation-cap mr-3"></i>BS Medical Laboratory Tech</h4>
+                        <p class="text-sm font-semibold text-slate-400 mb-4 tracking-wide uppercase">Khyber Medical University (2021-2025)</p>
+                        <ul class="list-disc pl-6 text-slate-300 space-y-2 font-medium">
+                            <li>CGPA: 3.88/4.00 (Ranked among top 5 students)</li>
+                            <li>Thesis Defense Commendation (92/100, A+ grade, 2026)</li>
+                            <li>Prime Minister's Youth Laptop Scheme Awardee (Phase IV)</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl">
+                        <h4 class="font-bold text-2xl text-emerald-400 mb-2"><i class="fas fa-award mr-3"></i>F.Sc Pre-Medical</h4>
+                        <p class="text-sm font-semibold text-slate-400 mb-4 tracking-wide uppercase">Dr. Khan Shaheed Degree College (2019-2021)</p>
+                        <ul class="list-disc pl-6 text-slate-300 space-y-2 font-medium">
+                            <li>Marks: 1042/1100 (94.7%) | College Topper</li>
+                            <li>Stoori Da Pakhtunkhwa Program Honoree (Top 20 Provincial Ranking)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clinical Experience -->
+        <section id="clinical" class="hide-on-scroll">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white inline-block border-b-4 border-blue-500 pb-3">Clinical Experience</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="glass-card p-10 rounded-3xl">
+                    <h3 class="text-3xl font-bold text-white mb-2">Lady Reading Hospital</h3>
+                    <p class="text-blue-400 font-bold mb-8 uppercase tracking-wider text-sm">Peshawar | Internship (2024-2025)</p>
+                    <ul class="space-y-5 text-slate-300 leading-relaxed">
+                        <li><span class="font-bold text-white block mb-1"><i class="fas fa-tint text-red-400 mr-2"></i>Hematology & Blood Bank</span> CBC, peripheral blood film morphology, ESR, coagulation profiling, hemoglobin electrophoresis, blood grouping, cross-matching.</li>
+                        <li><span class="font-bold text-white block mb-1"><i class="fas fa-vial text-purple-400 mr-2"></i>Clinical Chemistry & Serology</span> Routine and specialized chemistry on automated analyzers; ELISA and Coombs' testing.</li>
+                        <li><span class="font-bold text-white block mb-1"><i class="fas fa-bacterium text-green-400 mr-2"></i>Microbiology & Molecular</span> Standard culture, staining techniques, hands-on PCR diagnostic workflows.</li>
+                        <li><span class="font-bold text-white block mb-1"><i class="fas fa-microscope text-blue-400 mr-2"></i>Histopathology & Phlebotomy</span> Tissue processing, slide preparation, venipuncture, and arterial sampling.</li>
+                    </ul>
+                </div>
+                <div class="glass-card p-10 rounded-3xl">
+                    <h3 class="text-3xl font-bold text-white mb-2">THQ Hospital, Kabal</h3>
+                    <p class="text-emerald-400 font-bold mb-8 uppercase tracking-wider text-sm">Swat | MLT Internship (Jul-Aug 2026)</p>
+                    <ul class="space-y-5 text-slate-300 leading-relaxed">
+                        <li><span class="font-bold text-white block mb-1"><i class="fas fa-desktop text-slate-400 mr-2"></i>Hematology & Chemistry</span> Operated automated hematology (Dewei DW-3680), semi-auto chemistry (Mindray BA-88A), and electrolyte (IMS-972) analyzers.</li>
+                        <li><span class="font-bold text-white block mb-1"><i class="fas fa-dna text-indigo-400 mr-2"></i>Immunoassay & Molecular</span> Performed HbA1c, CRP, and TSH testing (Wondfo) and gained exposure to GeneXpert-based diagnostics.</li>
+                        <li><span class="font-bold text-white block mb-1"><i class="fas fa-search-plus text-emerald-400 mr-2"></i>Microscopy</span> Conducted routine urine and stool microscopic examinations.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: Research & Computational Projects (Divided) -->
+        <section id="projects" class="hide-on-scroll">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white inline-block border-b-4 border-purple-500 pb-3">Projects & Research</h2>
+            </div>
+            
+            <!-- Subsection 1: Computational Biology & Data Projects -->
+            <h3 class="text-2xl font-bold text-white border-b border-slate-700 pb-2 mb-8"><i class="fas fa-laptop-code text-indigo-400 mr-3"></i>Computational & Bioinformatics Projects</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                
+                <div class="glass-card p-8 rounded-3xl flex flex-col">
+                    <i class="fab fa-python text-5xl text-purple-400 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-white mb-2">DNA Sequence Analysis Toolkit</h4>
+                    <p class="text-xs font-bold text-purple-400 uppercase tracking-wider mb-5">Independent Python Project</p>
+                    <p class="text-slate-300 text-sm leading-loose">Engineered a modular Python toolkit to perform DNA sequence validation, nucleotide composition analysis, motif detection, and ORF identification without external libraries. Built DNA-to-protein translation and reverse complement generation modules.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl flex flex-col">
+                    <i class="fas fa-vial text-5xl text-teal-400 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-white mb-2">PCR Primer Design Workflows</h4>
+                    <p class="text-xs font-bold text-teal-400 uppercase tracking-wider mb-5">Computational Tools</p>
+                    <p class="text-slate-300 text-sm leading-loose">Explored computational biology workflows and Python libraries, focusing on executing code and debugging syntax for Biopython, Entrez, ExPASy, KEGG REST API, ScanProsite, and utilizing primer3 for PCR primer design.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl flex flex-col">
+                    <i class="fas fa-virus text-5xl text-red-400 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-white mb-2">SARS-CoV-2 Sequence Analysis</h4>
+                    <p class="text-xs font-bold text-red-400 uppercase tracking-wider mb-5">Computational Workflows</p>
+                    <p class="text-slate-300 text-sm leading-loose">Completed a guided bioinformatics project analyzing viral sequences using Biopython. Focused on computational workflows for genomic data, utilizing biological databases to assess sequence structures and variations.</p>
+                </div>
+
+            </div>
+
+            <!-- Subsection 2: Clinical Research & Communication -->
+            <h3 class="text-2xl font-bold text-white border-b border-slate-700 pb-2 mb-8"><i class="fas fa-flask text-emerald-400 mr-3"></i>Clinical Research & Communication</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="glass-card p-8 rounded-3xl flex flex-col">
+                    <i class="fas fa-dna text-5xl text-blue-400 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-white mb-2">Pediatric Thalassemia Research</h4>
+                    <p class="text-xs font-bold text-blue-400 uppercase tracking-wider mb-5">BS Thesis (2025-2026)</p>
+                    <p class="text-slate-300 text-sm leading-loose">Conducted a descriptive cross-sectional study involving 200 child-parent dyads to evaluate psychosocial challenges. Analyzed datasets using SPSS and R. Manuscript submitted to Thalassemia Reports.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl flex flex-col">
+                    <i class="fas fa-vials text-5xl text-emerald-400 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-white mb-2">Experimental Toxicology</h4>
+                    <p class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-5">Inhalational Exposure (2026)</p>
+                    <p class="text-slate-300 text-sm leading-loose">Assisted with a 30-day sub-acute inhalational exposure protocol in a rabbit model. Processed lung, liver, kidney, and brain tissue samples for histopathological evaluation of Type I & II pyrethroid insecticide exposure.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl flex flex-col">
+                    <i class="fab fa-youtube text-5xl text-pink-400 mb-6"></i>
+                    <h4 class="text-2xl font-bold text-white mb-2">Scientific Comm. & Design</h4>
+                    <p class="text-xs font-bold text-pink-400 uppercase tracking-wider mb-5">Digital Content Creation</p>
+                    <p class="text-slate-300 text-sm leading-loose">Managed digital content creation, including advanced graphic design, channel banners, and professional video thumbnails for educational YouTube channels such as Explore Verses, Earth Aura, and historical content.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- A to Z CERTIFICATIONS GALLERY -->
+        <section id="certificates" class="hide-on-scroll">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-white inline-block border-b-4 border-indigo-500 pb-3">Certification Gallery</h2>
+                <p class="mt-4 text-slate-400 font-medium tracking-wide">Interactive Credentials – Click to View Official Documents</p>
+            </div>
+            
+            <!-- Category 1: Bioinformatics & Genomics (Design Genomics moved here) -->
+            <h3 class="text-2xl font-bold text-white border-b border-slate-700 pb-2 mb-6"><i class="fas fa-dna mr-3 text-indigo-400"></i>Bioinformatics, Genomics & Training</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+                <a href="Python%20for%20genomic%20data%20science.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Python for Genomic Data Science</h4>
+                    <p class="text-xs text-indigo-400 font-bold uppercase">Johns Hopkins Univ. (PDF)</p>
+                </a>
+                <a href="Coursera%203IGF77D1ME51.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Intro to Genomic Technologies</h4>
+                    <p class="text-xs text-indigo-400 font-bold uppercase">Johns Hopkins Univ. (PDF)</p>
+                </a>
+                <a href="train-the-trainer-design-genomics-training_certificate_of_achievement_rn6h5h5.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Design Genomics Training</h4>
+                    <p class="text-xs text-indigo-400 font-bold uppercase">Wellcome (PDF)</p>
+                </a>
+                <a href="Coursera%20project%20bioinformatics.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Databases with Biopython</h4>
+                    <p class="text-xs text-indigo-400 font-bold uppercase">Coursera Project (PDF)</p>
+                </a>
+                <a href="Simulation%20of%20covid%2019%20testing%20process%20using%20R%20simmer.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Covid-19 Testing R Simmer</h4>
+                    <p class="text-xs text-indigo-400 font-bold uppercase">Coursera Project (PDF)</p>
+                </a>
+                <a href="R%20baed%20analysis%20boot%20camp.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">R-Based Analytics Bootcamp</h4>
+                    <p class="text-xs text-indigo-400 font-bold uppercase">Medsparkles (PDF)</p>
+                </a>
+                <a href="ibm%20spss%20certifcate.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Statistics 101</h4>
+                    <p class="text-xs text-indigo-400 font-bold uppercase">IBM (PDF)</p>
+                </a>
+                <a href="HEC%20CLP%20certificate.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Data Visualization with 'R'</h4>
+                    <p class="text-xs text-indigo-400 font-bold uppercase">Forman Christian (PDF)</p>
+                </a>
+                <a href="2.png" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Intro to Bioinformatics</h4>
+                    <p class="text-xs text-indigo-400 font-bold uppercase">ScientificHubX (PNG)</p>
+                </a>
+            </div>
+
+            <!-- Category 2: Laboratory Skills & Biosafety -->
+            <h3 class="text-2xl font-bold text-white border-b border-slate-700 pb-2 mb-6 mt-12"><i class="fas fa-microscope mr-3 text-emerald-400"></i>Laboratory Skills & Biosafety</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+                <a href="WHO%20Laboratory%20Quality%20Management%20system.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">LQMS Basics</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">WHO (PDF)</p>
+                </a>
+                <a href="ASCP%20Basic%20Laboratory%20skills%20LAB%20SAFETY.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Lab Safety</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">ASCP (PDF)</p>
+                </a>
+                <a href="ASCP%20Basic%20Laboratory%20skills%20Quality%20control.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Quality Control</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">ASCP (PDF)</p>
+                </a>
+                <a href="certificate.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Good Clinical Practice</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">NIDA Clinical Trials (PDF)</p>
+                </a>
+                <a href="m,%20Hamza.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Lab Biosafety & Biosecurity</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">KMU (PDF)</p>
+                </a>
+                <a href="Muhammad%20Hamza-1.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">PCR Skills Development</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">KMU (PDF)</p>
+                </a>
+                <a href="13.png" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">DNA Extraction Workshop</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">BJ Micro Lab (PNG)</p>
+                </a>
+                <a href="Coursera%20BMKG3PTXQPSK.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Blood Film Morphology</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">UWA (PDF)</p>
+                </a>
+                <a href="Muhammad%20Hamza%20-%202026-02-08.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">xMAP 1: Overview</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">Bio-Rad Academy (PDF)</p>
+                </a>
+                <a href="Muhammad%20Hamza%20-%202026-02-11.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">xMAP 2: Tech</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">Bio-Rad Academy (PDF)</p>
+                </a>
+                <a href="Muhammad%20Hamza%20-%202026-02-15.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">xMAP 3: Systems</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">Bio-Rad Academy (PDF)</p>
+                </a>
+                <a href="Muhammad%20Hamza%20-%202026-02-15(0).pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Antibody Essentials 1</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">Bio-Rad Academy (PDF)</p>
+                </a>
+                <a href="Muhammad%20Hamza%20-%202026-02-15(1).pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Antibody Essentials 2</h4>
+                    <p class="text-xs text-emerald-400 font-bold uppercase">Bio-Rad Academy (PDF)</p>
+                </a>
+            </div>
+
+            <!-- Category 3: SEPARATE Leadership Section -->
+            <h3 class="text-2xl font-bold text-white border-b border-slate-700 pb-2 mb-6 mt-12"><i class="fas fa-users-cog mr-3 text-pink-400"></i>Leadership & Development</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+                <a href="Aspire-Paid-Certificate.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">2026 Aspire Leaders Program</h4>
+                    <p class="text-xs text-pink-400 font-bold uppercase">Aspire Institute (PDF)</p>
+                </a>
+                <a href="Copy%20of%20Muhammad%20hamza%20(1).png" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Aspire Leadership Awareness</h4>
+                    <p class="text-xs text-pink-400 font-bold uppercase">NYLP & NUMS (PNG)</p>
+                </a>
+            </div>
+
+            <!-- Category 4: SEPARATE Scientific Writing & Publications Section -->
+            <h3 class="text-2xl font-bold text-white border-b border-slate-700 pb-2 mb-6 mt-12"><i class="fas fa-pen-nib mr-3 text-amber-400"></i>Scientific Writing & Publications</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+                <a href="Coursera%202A7749RYRC35.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Writing in the Sciences</h4>
+                    <p class="text-xs text-amber-400 font-bold uppercase">Stanford University (PDF)</p>
+                </a>
+                <a href="Muhammad%20Hamza%20-%202026-03-12.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Medical Writing Beginners</h4>
+                    <p class="text-xs text-amber-400 font-bold uppercase">IMWA (PDF)</p>
+                </a>
+                <a href="Mastering%20art%20of%20writing.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Writing Peer-Reviewed Pubs</h4>
+                    <p class="text-xs text-amber-400 font-bold uppercase">Springer Nature (PDF)</p>
+                </a>
+            </div>
+
+            <!-- Category 5: Continuous Education & Seminars -->
+            <h3 class="text-2xl font-bold text-white border-b border-slate-700 pb-2 mb-6 mt-12"><i class="fas fa-certificate mr-3 text-yellow-400"></i>Continuous Education & Seminars</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <a href="ASLM_Certerficate_0205261201514625.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">QMS Toolkit ECHO Session</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">ASLM Academy (PDF)</p>
+                </a>
+                <a href="ASLM_Certerficate_1504261300414625%20(1).pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Waste Management (Apr)</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">ASLM Academy (PDF)</p>
+                </a>
+                <a href="ASLM_Certerficate_2503261501014625.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Waste Management (Mar)</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">ASLM Academy (PDF)</p>
+                </a>
+                <a href="ASLM_Certerficate_1804260901314625.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Molecular TB Diagnosis</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">ASLM Academy (PDF)</p>
+                </a>
+                <a href="Labroots_Completion_9894.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Automating hiPSC Workflows</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">Labroots (PDF)</p>
+                </a>
+                <a href="Labroots_Completion_9946.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">ED Patient Disposition (RNA)</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">Labroots (PDF)</p>
+                </a>
+                <a href="Labroots_Completion_9954.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Reproducible Science</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">Labroots (PDF)</p>
+                </a>
+                <a href="Career%20Webinar%20Certificate.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Career Growth Opportunities</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">GRIN (PDF)</p>
+                </a>
+                <a href="CERTIFICATES.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Hypertension Awareness</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">GRIN (PDF)</p>
+                </a>
+                <a href="Git%20hub%20protofile.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Building Portfolio Github</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">GRIN (PDF)</p>
+                </a>
+                <a href="170.jpg" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Biosafety Symposium</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">VNIAS & NUMS (JPG)</p>
+                </a>
+                <a href="Muhammad_Hamza.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Unlocking UACR</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">Erba Mannheim (PDF)</p>
+                </a>
+                <a href="PDFMailer.pdf" target="_blank" class="block glass-card p-5 rounded-xl">
+                    <h4 class="font-bold text-sm text-white mb-1">Infection Specialist Workforce</h4>
+                    <p class="text-xs text-yellow-400 font-bold uppercase">Healthcare Infection Society (PDF)</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Global Memberships Section -->
+        <section id="memberships" class="hide-on-scroll">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black text-white inline-block border-b-4 border-cyan-500 pb-3">Global Affiliations</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <a href="Virtual%20ID%20Card.pdf" target="_blank" class="glass-card py-8 px-4 rounded-3xl block">
+                    <h4 class="font-black text-2xl text-white mb-2">ASCP</h4>
+                    <p class="text-sm font-semibold text-cyan-400 mb-4">Active Member</p>
+                    <span class="text-xs text-white font-bold uppercase bg-white/10 py-2 px-4 rounded-full border border-white/20"><i class="fas fa-id-card mr-1"></i>View ID</span>
+                </a>
+                <a href="join.pdf" target="_blank" class="glass-card py-8 px-4 rounded-3xl block">
+                    <h4 class="font-black text-2xl text-white mb-2">AMP</h4>
+                    <p class="text-sm font-semibold text-cyan-400 mb-4">Associate Student</p>
+                    <span class="text-xs text-white font-bold uppercase bg-white/10 py-2 px-4 rounded-full border border-white/20"><i class="fas fa-file-pdf mr-1"></i>View Proof</span>
+                </a>
+                <a href="SOHO%20Member%20Certificate_Muhammad%20Hamza.pdf" target="_blank" class="glass-card py-8 px-4 rounded-3xl block">
+                    <h4 class="font-black text-2xl text-white mb-2">SOHO</h4>
+                    <p class="text-sm font-semibold text-cyan-400 mb-4">Member (thru 2031)</p>
+                    <span class="text-xs text-white font-bold uppercase bg-white/10 py-2 px-4 rounded-full border border-white/20"><i class="fas fa-certificate mr-1"></i>View Cert</span>
+                </a>
+                <a href="asmmembershipcertificateeweb__dbasm_bce15b7c-beb0-436a-83ef-3516c3f824774172026.pdf" target="_blank" class="glass-card py-8 px-4 rounded-3xl block">
+                    <h4 class="font-black text-2xl text-white mb-2">ASM</h4>
+                    <p class="text-sm font-semibold text-cyan-400 mb-4">Global Outreach</p>
+                    <span class="text-xs text-white font-bold uppercase bg-white/10 py-2 px-4 rounded-full border border-white/20"><i class="fas fa-certificate mr-1"></i>View Cert</span>
+                </a>
+                <a href="membership_certificate%20(1).pdf" target="_blank" class="glass-card py-8 px-4 rounded-3xl block">
+                    <h4 class="font-black text-2xl text-white mb-2">ASLM</h4>
+                    <p class="text-sm font-semibold text-cyan-400 mb-4">Friends of ASLM</p>
+                    <span class="text-xs text-white font-bold uppercase bg-white/10 py-2 px-4 rounded-full border border-white/20"><i class="fas fa-certificate mr-1"></i>View Cert</span>
+                </a>
+                <a href="Path%20Soc%20Membership%20Certificate%20Aug%202026.pdf" target="_blank" class="glass-card py-8 px-4 rounded-3xl block">
+                    <h4 class="font-black text-2xl text-white mb-2">Path Soc</h4>
+                    <p class="text-sm font-semibold text-cyan-400 mb-4">Professional Member</p>
+                    <span class="text-xs text-white font-bold uppercase bg-white/10 py-2 px-4 rounded-full border border-white/20"><i class="fas fa-certificate mr-1"></i>View Cert</span>
+                </a>
+                <a href="RMS%20Certificate%20of%20Membership%20-%20Muhammad%20Hamza.pdf" target="_blank" class="glass-card py-8 px-4 rounded-3xl block">
+                    <h4 class="font-black text-2xl text-white mb-2">RMS</h4>
+                    <p class="text-sm font-semibold text-cyan-400 mb-4">Elected Member</p>
+                    <span class="text-xs text-white font-bold uppercase bg-white/10 py-2 px-4 rounded-full border border-white/20"><i class="fas fa-certificate mr-1"></i>View Cert</span>
+                </a>
+                <a href="Gmail%20-%20Welcome%20to%20BINA.pdf" target="_blank" class="glass-card py-8 px-4 rounded-3xl block">
+                    <h4 class="font-black text-2xl text-white mb-2">BINA</h4>
+                    <p class="text-sm font-semibold text-cyan-400 mb-4">Community Member</p>
+                    <span class="text-xs text-white font-bold uppercase bg-white/10 py-2 px-4 rounded-full border border-white/20"><i class="fas fa-envelope-open mr-1"></i>View Proof</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="glass-nav text-center py-12 mt-20 border-t border-slate-700">
+        <p class="text-sm font-semibold tracking-widest uppercase text-slate-400">© 2026 Muhammad Hamza</p>
+        <p class="text-xs mt-2 text-slate-500">Engineered for Precision Medicine & Computational Biology.</p>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show-on-scroll');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const hiddenElements = document.querySelectorAll('.hide-on-scroll');
+            hiddenElements.forEach((el) => observer.observe(el));
+        });
+
+        function copyEmail() {
+            navigator.clipboard.writeText("m.hamza.mlt.pk@gmail.com").then(() => {
+                const emailText = document.getElementById("emailText");
+                const emailIcon = document.getElementById("emailIcon");
+                
+                emailText.innerText = "Copied to Clipboard!";
+                emailIcon.className = "fas fa-check mr-2";
+                
+                setTimeout(() => {
+                    emailText.innerText = "Email Me";
+                    emailIcon.className = "fas fa-envelope mr-2";
+                }, 3000);
+            }).catch(err => {
+                console.error("Failed to copy text: ", err);
+            });
+        }
+    </script>
+</body>
+</html>
